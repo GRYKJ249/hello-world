@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import { Contrast, Palette, Volume2, VolumeX } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { Contrast, LayoutDashboard, LogIn, Palette, Volume2, VolumeX } from "lucide-react";
 import catAvatar from "@/assets/space-cat-avatar.png";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { useSound } from "@/hooks/use-sound";
+import { useAuth } from "@/hooks/useAuth";
+import { useLang } from "@/lib/i18n";
 
 const links = [
   { href: "#platform", label: "Platform" },
