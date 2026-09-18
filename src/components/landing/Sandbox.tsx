@@ -39,7 +39,7 @@ export function Sandbox() {
     setInput("");
     setMsgs((m) => [...m, { role: "user", text: q }]);
     setTyping(true);
-    const full = answer(q);
+    const full = answer(q) ?? "";
     setTimeout(() => {
       setTyping(false);
       let i = 0;

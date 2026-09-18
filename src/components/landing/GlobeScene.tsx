@@ -70,6 +70,7 @@ function CodeFragments({ lite, primary, accent }: SceneProps) {
     const t = state.clock.elapsedTime;
     group.current.children.forEach((child, i) => {
       const it = items[i];
+      if (!it) return;
       const a = it.theta + t * it.speed;
       child.position.set(Math.cos(a) * it.r, Math.sin(a) * it.r * Math.sin(it.tilt), Math.sin(a) * it.r * Math.cos(it.tilt));
       child.lookAt(0, 0, 0);
