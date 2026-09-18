@@ -19,6 +19,8 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const { highContrast, setHighContrast } = useTheme();
   const { enabled, setEnabled, click } = useSound();
+  const { session } = useAuth();
+  const { lang, setLang, t } = useLang();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -74,10 +76,29 @@ export function Nav() {
           >
             <Contrast className="h-4 w-4" />
           </button>
+          <button
+            type="button"
+            aria-label="Toggle language"
+            onClick={() => { click(); setLang(lang === "ar" ? "en" : "ar"); }}
+            className="rounded-full px-2.5 py-2 text-xs text-muted-foreground transition-colors hover:bg-primary/10 hover:text-foreground"
+          >
+            {lang === "ar" ? "EN" : "ع"}
+          </button>
           <a href="#themes" onClick={click} className="btn-ghost !px-3 !py-2 text-xs md:!px-4">
             <Palette className="h-4 w-4" />
             <span className="hidden sm:inline">100 Themes</span>
           </a>
+          {session ? (
+            <Link to="/dashboard" onClick={click} className="btn-hero !px-3 !py-2 text-xs md:!px-4">
+              <LayoutDashboard className="h-4 w-4" />
+              <span className="hidden sm:inline">{t("Account", "حسابي")}</span>
+            </Link>
+          ) : (
+            <Link to="/auth" onClick={click} className="btn-hero !px-3 !py-2 text-xs md:!px-4">
+              <LogIn className="h-4 w-4" />
+              <span className="hidden sm:inline">{t("Sign in", "دخول")}</span>
+            </Link>
+          )}
         </div>
       </nav>
     </header>
